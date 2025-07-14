@@ -40,7 +40,7 @@ export class TicketService {
    */
   async getTicketById(ticketId: string): Promise<ITicket | null> {
     try {
-      const ticket = await Ticket.findOne({ id: ticketId });
+      const ticket = await Ticket.findById(ticketId);
       
       return ticket ? this.transformTicketDocument(ticket) : null;
     } catch (error) {
@@ -54,7 +54,7 @@ export class TicketService {
    */
   async deactivateTicket(ticketId: string): Promise<ITicket | null> {
     try {
-      const ticket = await Ticket.findOne({ id: ticketId });
+      const ticket = await Ticket.findById(ticketId);
 
       if (!ticket) {
         return null;
@@ -102,7 +102,7 @@ export class TicketService {
    */
   private transformTicketDocument(doc: any): ITicket {
     return {
-      id: doc.id,
+      _id: doc._id.toString(),
       status: doc.status,
       createdAt: doc.createdAt,
       deactivatedAt: doc.deactivatedAt,
