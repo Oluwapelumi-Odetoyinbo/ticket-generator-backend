@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'https://digital-ticket-system.vercel.app',
   credentials: true,
 }));
 app.use(express.json());
